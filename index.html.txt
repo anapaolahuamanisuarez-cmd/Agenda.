@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATEMPORAL - Organiza tus días</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f7f6; color: #333; max-width: 600px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 5px; }
+        .slogan { text-align: center; color: #7f8c8d; font-style: italic; margin-bottom: 20px; }
+        .fecha { text-align: center; font-weight: bold; color: #16a085; }
+        .seccion { margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; }
+        input[type="text"] { width: 70%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 8px 15px; background-color: #16a085; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #117a65; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 10px; background: #f9f9f9; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .completada { text-decoration: line-through; color: #bdc3c7; }
+    </style>
+</head>
+<body>
+    <h1>ATEMPORAL</h1>
+    <p class="slogan">Organiza tus días. Construye tu futuro.</p>
+    <p class="fecha" id="fecha-actual"></p>
+    <div class="seccion">
+        <h3>Mis Tareas</h3>
+        <input type="text" id="nueva-tarea" placeholder="Escribe una nueva tarea...">
+        <button onclick="agregarTareaWeb()">Agregar</button>
+        <ul id="lista-tareas"></ul>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
