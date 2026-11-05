@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ATEMPORAL — Mi espacio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">ATEMPORAL<span>.</span></a>
+    <div class="top-actions">
+      <span id="user-email" class="muted small"></span>
+      <button class="button secondary compact" id="logout-btn">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">TU ESPACIO PERSONAL</p>
+        <h1>Haz que tu tiempo cuente.</h1>
+        <p class="muted">Organiza tus pendientes, construye hábitos y observa tu progreso.</p>
+      </div>
+      <div class="points-card">
+        <span class="points-label">PUNTOS</span>
+        <strong id="points-total">0</strong>
+        <span id="rank-label">Rango: Inicio</span>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Secciones">
+      <button class="tab active" data-section="tasks">Tareas</button>
+      <button class="tab" data-section="goals">Objetivos</button>
+      <button class="tab" data-section="habits">Hábitos</button>
+      <button class="tab" data-section="notes">Notas</button>
+      <button class="tab" data-section="finance">Finanzas</button>
+    </nav>
+
+    <section id="section-tasks" class="panel section-panel">
+      <div class="section-heading"><div><p class="eyebrow">ORGANIZACIÓN</p><h2>Mis tareas</h2></div></div>
+      <form id="task-form" class="entry-form">
+        <input name="title" placeholder="¿Qué necesitas hacer?" required maxlength="120">
+        <input name="due_date" type="date" aria-label="Fecha límite">
+        <input name="description" placeholder="Descripción (opcional)" maxlength="300">
+        <button class="button primary" type="submit">Agregar tarea</button>
+      </form>
+      <div id="tasks-list" class="item-list"></div>
+    </section>
+
+    <section id="section-goals" class="panel section-panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">DIRECCIÓN</p><h2>Mis objetivos</h2></div></div>
+      <form id="goal-form" class="entry-form">
+        <input name="title" placeholder="Nombre del objetivo" required maxlength="120">
+        <input name="target_date" type="date" aria-label="Fecha objetivo">
+        <input name="description" placeholder="¿Qué quieres lograr?" maxlength="300">
+        <button class="button primary" type="submit">Agregar objetivo</button>
+      </form>
+      <div id="goals-list" class="item-list"></div>
+    </section>
+
+    <section id="section-habits" class="panel section-panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">CONSTANCIA</p><h2>Mis hábitos</h2></div></div>
+      <form id="habit-form" class="entry-form">
+        <input name="title" placeholder="Nuevo hábito" required maxlength="120">
+        <input name="description" placeholder="Frecuencia o detalle (opcional)" maxlength="200">
+        <button class="button primary" type="submit">Agregar hábito</button>
+      </form>
+      <div id="habits-list" class="item-list"></div>
+    </section>
+
+    <section id="section-notes" class="panel section-panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">IDEAS</p><h2>Mis notas</h2></div></div>
+      <form id="note-form" class="entry-form vertical-form">
+        <input name="title" placeholder="Título de la nota" required maxlength="120">
+        <textarea name="content" placeholder="Escribe aquí tus ideas…" rows="4" required maxlength="10000"></textarea>
+        <button class="button primary" type="submit">Guardar nota</button>
+      </form>
+      <div id="notes-list" class="item-list"></div>
+    </section>
+
+    <section id="section-finance" class="panel section-panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">CONTROL PERSONAL</p><h2>Mis finanzas</h2></div></div>
+      <div class="finance-summary">
+        <div><span>Ingresos</span><strong id="income-total">S/ 0.00</strong></div>
+        <div><span>Gastos</span><strong id="expense-total">S/ 0.00</strong></div>
+        <div><span>Balance</span><strong id="balance-total">S/ 0.00</strong></div>
+      </div>
+      <form id="movement-form" class="entry-form">
+        <input name="description" placeholder="Concepto" required maxlength="120">
+        <input name="amount" type="number" min="0.01" step="0.01" placeholder="Monto (S/)" required>
+        <select name="type" aria-label="Tipo de movimiento"><option value="expense">Gasto</option><option value="income">Ingreso</option></select>
+        <input name="movement_date" type="date" aria-label="Fecha">
+        <button class="button primary" type="submit">Registrar</button>
+      </form>
+      <div id="movements-list" class="item-list"></div>
+    </section>
+
+    <p id="app-message" class="message" role="status" aria-live="polite"></p>
+  </main>
+  <footer class="footer">ATEMPORAL · Tu tiempo, tus decisiones.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
