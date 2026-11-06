@@ -3,102 +3,474 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ATEMPORAL — Mi espacio</title>
+  <meta name="theme-color" content="#f6f7f8">
+  <meta name="description" content="ATEMPORAL: organiza tus días, construye hábitos y observa tu progreso.">
+  <title>ATEMPORAL — Tu espacio personal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="index.html">ATEMPORAL<span>.</span></a>
-    <div class="top-actions">
-      <span id="user-email" class="muted small"></span>
-      <button class="button secondary compact" id="logout-btn">Cerrar sesión</button>
+
+<body class="app-body">
+
+  <div class="app-layout">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+      <a class="brand" href="index.html">ATEMPORAL<span>.</span></a>
+      <p class="sidebar-caption">TU ESPACIO PERSONAL</p>
+
+      <nav class="side-nav" aria-label="Navegación principal">
+        <button class="nav-item active" data-section="home">
+          <span>⌂</span> Inicio
+        </button>
+        <button class="nav-item" data-section="tasks">
+          <span>☑</span> Tareas
+        </button>
+        <button class="nav-item" data-section="goals">
+          <span>◎</span> Objetivos
+        </button>
+        <button class="nav-item" data-section="habits">
+          <span>↻</span> Hábitos
+        </button>
+        <button class="nav-item" data-section="notes">
+          <span>▤</span> Notas
+        </button>
+        <button class="nav-item" data-section="finance">
+          <span>◇</span> Finanzas
+        </button>
+        <button class="nav-item" data-section="stats">
+          <span>▥</span> Estadísticas
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="user-avatar">A</div>
+          <div class="user-details">
+            <strong>Mi cuenta</strong>
+            <span id="user-email">Cargando...</span>
+          </div>
+        </div>
+        <button class="button secondary full" id="logout-btn">
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+
+      <header class="mobile-header">
+        <a class="brand" href="index.html">ATEMPORAL<span>.</span></a>
+        <button class="button secondary compact" id="mobile-logout-btn" type="button">
+          Salir
+        </button>
+      </header>
+
+      <!-- INICIO -->
+      <section id="section-home" class="section-panel">
+
+        <div class="welcome">
+          <div>
+            <p class="eyebrow">TU ESPACIO PERSONAL</p>
+            <h1>Haz que tu tiempo cuente.</h1>
+            <p class="muted" id="today-label">
+              Un nuevo día para avanzar a tu ritmo.
+            </p>
+          </div>
+
+          <div class="points-card">
+            <span class="points-label">MIS PUNTOS</span>
+            <strong id="points-total">0</strong>
+            <span id="rank-label">Rango: Inicio</span>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">VISTA GENERAL</p>
+            <h2>Tu progreso</h2>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+
+          <article class="overview-card">
+            <div class="overview-icon">☑</div>
+            <strong id="home-pending-tasks">0</strong>
+            <span>Tareas pendientes</span>
+            <button class="text-link" data-open-section="tasks">
+              Ver tareas →
+            </button>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-icon">◎</div>
+            <strong id="home-active-goals">0</strong>
+            <span>Objetivos activos</span>
+            <button class="text-link" data-open-section="goals">
+              Ver objetivos →
+            </button>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-icon">↻</div>
+            <strong id="home-habits-completed">0/0</strong>
+            <span>Hábitos de hoy</span>
+            <button class="text-link" data-open-section="habits">
+              Ver hábitos →
+            </button>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-icon">◇</div>
+            <strong id="home-balance">S/ 0.00</strong>
+            <span>Balance financiero</span>
+            <button class="text-link" data-open-section="finance">
+              Ver finanzas →
+            </button>
+          </article>
+
+        </div>
+
+        <div class="home-columns">
+
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">ORGANIZACIÓN</p>
+                <h2>Mis próximas tareas</h2>
+              </div>
+              <button class="text-link" data-open-section="tasks">
+                Ver todas →
+              </button>
+            </div>
+            <div id="home-tasks-list" class="item-list">
+              <p class="empty">Cargando tus tareas...</p>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">CONSTANCIA</p>
+                <h2>Hábitos de hoy</h2>
+              </div>
+              <button class="text-link" data-open-section="habits">
+                Ver todos →
+              </button>
+            </div>
+            <div id="home-habits-list" class="item-list">
+              <p class="empty">Cargando tus hábitos...</p>
+            </div>
+          </article>
+
+        </div>
+
+        <article class="panel quick-access">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">ORGANIZA TU TIEMPO</p>
+              <h2>Accesos rápidos</h2>
+            </div>
+          </div>
+
+          <div class="quick-grid">
+            <button class="quick-item" data-open-section="tasks">
+              <span>＋</span>
+              Nueva tarea
+            </button>
+            <button class="quick-item" data-open-section="goals">
+              <span>◎</span>
+              Nuevo objetivo
+            </button>
+            <button class="quick-item" data-open-section="habits">
+              <span>↻</span>
+              Nuevo hábito
+            </button>
+            <button class="quick-item" data-open-section="notes">
+              <span>▤</span>
+              Nueva nota
+            </button>
+            <button class="quick-item" data-open-section="finance">
+              <span>◇</span>
+              Movimiento financiero
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- TAREAS -->
+      <section id="section-tasks" class="section-panel hidden">
+        <div class="page-heading">
+          <p class="eyebrow">ORGANIZACIÓN</p>
+          <h1>Mis tareas</h1>
+          <p class="muted">Organiza tus pendientes y avanza paso a paso.</p>
+        </div>
+
+        <article class="panel">
+          <form id="task-form" class="entry-form">
+            <input name="title" placeholder="¿Qué necesitas hacer?" required maxlength="120">
+            <input name="due_date" type="date" aria-label="Fecha límite">
+            <input name="description" placeholder="Descripción (opcional)" maxlength="300">
+            <button class="button primary" type="submit">＋ Agregar tarea</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <h2>Lista de tareas</h2>
+            <span id="tasks-count" class="muted small">0 tareas</span>
+          </div>
+          <div id="tasks-list" class="item-list"></div>
+        </article>
+      </section>
+
+      <!-- OBJETIVOS -->
+      <section id="section-goals" class="section-panel hidden">
+        <div class="page-heading">
+          <p class="eyebrow">DIRECCIÓN</p>
+          <h1>Mis objetivos</h1>
+          <p class="muted">Define lo que quieres conseguir y mide tu progreso.</p>
+        </div>
+
+        <article class="panel">
+          <form id="goal-form" class="entry-form">
+            <input name="title" placeholder="Nombre del objetivo" required maxlength="120">
+            <input name="target_date" type="date" aria-label="Fecha objetivo">
+            <input name="description" placeholder="¿Qué quieres lograr?" maxlength="300">
+            <button class="button primary" type="submit">＋ Agregar objetivo</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <h2>Mis metas</h2>
+            <span id="goals-count" class="muted small">0 objetivos</span>
+          </div>
+          <div id="goals-list" class="item-list"></div>
+        </article>
+      </section>
+
+      <!-- HÁBITOS -->
+      <section id="section-habits" class="section-panel hidden">
+        <div class="page-heading">
+          <p class="eyebrow">CONSTANCIA</p>
+          <h1>Mis hábitos</h1>
+          <p class="muted">Pequeñas acciones que construyen grandes cambios.</p>
+        </div>
+
+        <article class="panel">
+          <form id="habit-form" class="entry-form">
+            <input name="title" placeholder="Nuevo hábito" required maxlength="120">
+            <input name="description" placeholder="Frecuencia o detalle (opcional)" maxlength="200">
+            <button class="button primary" type="submit">＋ Agregar hábito</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SEGUIMIENTO DIARIO</p>
+              <h2>Hoy</h2>
+            </div>
+            <span id="habits-count" class="muted small">0 hábitos</span>
+          </div>
+          <div id="habits-list" class="item-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">TU CONSTANCIA</p>
+              <h2>Calendario de hábitos</h2>
+            </div>
+          </div>
+          <div id="habit-calendar" class="habit-calendar">
+            <p class="empty">Tu historial aparecerá aquí.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- NOTAS -->
+      <section id="section-notes" class="section-panel hidden">
+        <div class="page-heading">
+          <p class="eyebrow">IDEAS</p>
+          <h1>Mis notas</h1>
+          <p class="muted">Un espacio para guardar tus ideas y pensamientos.</p>
+        </div>
+
+        <article class="panel">
+          <form id="note-form" class="entry-form vertical-form">
+            <input name="title" placeholder="Título de la nota" required maxlength="120">
+            <textarea name="content" placeholder="Escribe aquí tus ideas..." rows="4" required maxlength="10000"></textarea>
+            <button class="button primary" type="submit">＋ Guardar nota</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <h2>Mis apuntes</h2>
+            <span id="notes-count" class="muted small">0 notas</span>
+          </div>
+          <div id="notes-list" class="item-list"></div>
+        </article>
+      </section>
+
+      <!-- FINANZAS -->
+      <section id="section-finance" class="section-panel hidden">
+        <div class="page-heading">
+          <p class="eyebrow">CONTROL PERSONAL</p>
+          <h1>Mis finanzas</h1>
+          <p class="muted">Conoce tus ingresos, gastos y balance.</p>
+        </div>
+
+        <div class="finance-summary">
+          <article>
+            <span>Ingresos</span>
+            <strong id="income-total">S/ 0.00</strong>
+          </article>
+          <article>
+            <span>Gastos</span>
+            <strong id="expense-total">S/ 0.00</strong>
+          </article>
+          <article>
+            <span>Balance</span>
+            <strong id="balance-total">S/ 0.00</strong>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="section-heading">
+            <h2>Registrar movimiento</h2>
+          </div>
+          <form id="movement-form" class="entry-form">
+            <input name="description" placeholder="Concepto" required maxlength="120">
+            <input name="amount" type="number" min="0.01" step="0.01" placeholder="Monto (S/)" required>
+            <select name="type" aria-label="Tipo de movimiento">
+              <option value="expense">Gasto</option>
+              <option value="income">Ingreso</option>
+            </select>
+            <input name="movement_date" type="date" aria-label="Fecha">
+            <button class="button primary" type="submit">＋ Registrar</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <h2>Historial de movimientos</h2>
+            <span id="movements-count" class="muted small">0 movimientos</span>
+          </div>
+          <div id="movements-list" class="item-list"></div>
+        </article>
+      </section>
+
+      <!-- ESTADÍSTICAS -->
+      <section id="section-stats" class="section-panel hidden">
+        <div class="page-heading">
+          <p class="eyebrow">EVOLUCIÓN</p>
+          <h1>Mis estadísticas</h1>
+          <p class="muted">Observa tus avances y reconoce tu constancia.</p>
+        </div>
+
+        <div class="overview-grid">
+          <article class="overview-card">
+            <div class="overview-icon">☑</div>
+            <strong id="stats-completed-tasks">0</strong>
+            <span>Tareas completadas</span>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-icon">◎</div>
+            <strong id="stats-completed-goals">0</strong>
+            <span>Objetivos completados</span>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-icon">↻</div>
+            <strong id="stats-habit-completions">0</strong>
+            <span>Registros de hábitos</span>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-icon">★</div>
+            <strong id="stats-points">0</strong>
+            <span>Puntos actuales</span>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SEGUIMIENTO</p>
+              <h2>Actividad de hábitos</h2>
+            </div>
+          </div>
+          <div id="stats-habits-summary">
+            <p class="empty">Tus estadísticas aparecerán aquí.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- MENSAJES -->
+      <div id="app-message" class="message" role="status" aria-live="polite"></div>
+
+      <footer class="footer">
+        ATEMPORAL · Tu tiempo, tus decisiones.
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- NAVEGACIÓN INFERIOR PARA CELULARES -->
+  <nav class="bottom-nav" aria-label="Navegación móvil">
+    <button class="bottom-nav-item active" data-section="home">
+      <span>⌂</span>
+      <small>Inicio</small>
+    </button>
+    <button class="bottom-nav-item" data-section="tasks">
+      <span>☑</span>
+      <small>Tareas</small>
+    </button>
+    <button class="bottom-nav-item" data-section="habits">
+      <span>↻</span>
+      <small>Hábitos</small>
+    </button>
+    <button class="bottom-nav-item" data-section="finance">
+      <span>◇</span>
+      <small>Finanzas</small>
+    </button>
+    <button class="bottom-nav-item" data-section="stats">
+      <span>▥</span>
+      <small>Más</small>
+    </button>
+  </nav>
+
+  <!-- VENTANA GENERAL DE EDICIÓN -->
+  <dialog id="edit-dialog" class="edit-dialog">
+    <div class="edit-dialog-content">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ATEMPORAL</p>
+          <h2 id="edit-title">Editar registro</h2>
+        </div>
+        <button type="button" id="close-edit-btn" class="icon-button" aria-label="Cerrar">✕</button>
+      </div>
+
+      <form id="edit-form" class="stack">
+        <div id="edit-fields"></div>
+        <div class="button-row">
+          <button type="button" id="cancel-edit-btn" class="button secondary">Cancelar</button>
+          <button type="submit" class="button primary">Guardar cambios</button>
+        </div>
+      </form>
     </div>
-  </header>
+  </dialog>
 
-  <main class="dashboard">
-    <section class="welcome">
-      <div>
-        <p class="eyebrow">TU ESPACIO PERSONAL</p>
-        <h1>Haz que tu tiempo cuente.</h1>
-        <p class="muted">Organiza tus pendientes, construye hábitos y observa tu progreso.</p>
-      </div>
-      <div class="points-card">
-        <span class="points-label">PUNTOS</span>
-        <strong id="points-total">0</strong>
-        <span id="rank-label">Rango: Inicio</span>
-      </div>
-    </section>
-
-    <nav class="tabs" aria-label="Secciones">
-      <button class="tab active" data-section="tasks">Tareas</button>
-      <button class="tab" data-section="goals">Objetivos</button>
-      <button class="tab" data-section="habits">Hábitos</button>
-      <button class="tab" data-section="notes">Notas</button>
-      <button class="tab" data-section="finance">Finanzas</button>
-    </nav>
-
-    <section id="section-tasks" class="panel section-panel">
-      <div class="section-heading"><div><p class="eyebrow">ORGANIZACIÓN</p><h2>Mis tareas</h2></div></div>
-      <form id="task-form" class="entry-form">
-        <input name="title" placeholder="¿Qué necesitas hacer?" required maxlength="120">
-        <input name="due_date" type="date" aria-label="Fecha límite">
-        <input name="description" placeholder="Descripción (opcional)" maxlength="300">
-        <button class="button primary" type="submit">Agregar tarea</button>
-      </form>
-      <div id="tasks-list" class="item-list"></div>
-    </section>
-
-    <section id="section-goals" class="panel section-panel hidden">
-      <div class="section-heading"><div><p class="eyebrow">DIRECCIÓN</p><h2>Mis objetivos</h2></div></div>
-      <form id="goal-form" class="entry-form">
-        <input name="title" placeholder="Nombre del objetivo" required maxlength="120">
-        <input name="target_date" type="date" aria-label="Fecha objetivo">
-        <input name="description" placeholder="¿Qué quieres lograr?" maxlength="300">
-        <button class="button primary" type="submit">Agregar objetivo</button>
-      </form>
-      <div id="goals-list" class="item-list"></div>
-    </section>
-
-    <section id="section-habits" class="panel section-panel hidden">
-      <div class="section-heading"><div><p class="eyebrow">CONSTANCIA</p><h2>Mis hábitos</h2></div></div>
-      <form id="habit-form" class="entry-form">
-        <input name="title" placeholder="Nuevo hábito" required maxlength="120">
-        <input name="description" placeholder="Frecuencia o detalle (opcional)" maxlength="200">
-        <button class="button primary" type="submit">Agregar hábito</button>
-      </form>
-      <div id="habits-list" class="item-list"></div>
-    </section>
-
-    <section id="section-notes" class="panel section-panel hidden">
-      <div class="section-heading"><div><p class="eyebrow">IDEAS</p><h2>Mis notas</h2></div></div>
-      <form id="note-form" class="entry-form vertical-form">
-        <input name="title" placeholder="Título de la nota" required maxlength="120">
-        <textarea name="content" placeholder="Escribe aquí tus ideas…" rows="4" required maxlength="10000"></textarea>
-        <button class="button primary" type="submit">Guardar nota</button>
-      </form>
-      <div id="notes-list" class="item-list"></div>
-    </section>
-
-    <section id="section-finance" class="panel section-panel hidden">
-      <div class="section-heading"><div><p class="eyebrow">CONTROL PERSONAL</p><h2>Mis finanzas</h2></div></div>
-      <div class="finance-summary">
-        <div><span>Ingresos</span><strong id="income-total">S/ 0.00</strong></div>
-        <div><span>Gastos</span><strong id="expense-total">S/ 0.00</strong></div>
-        <div><span>Balance</span><strong id="balance-total">S/ 0.00</strong></div>
-      </div>
-      <form id="movement-form" class="entry-form">
-        <input name="description" placeholder="Concepto" required maxlength="120">
-        <input name="amount" type="number" min="0.01" step="0.01" placeholder="Monto (S/)" required>
-        <select name="type" aria-label="Tipo de movimiento"><option value="expense">Gasto</option><option value="income">Ingreso</option></select>
-        <input name="movement_date" type="date" aria-label="Fecha">
-        <button class="button primary" type="submit">Registrar</button>
-      </form>
-      <div id="movements-list" class="item-list"></div>
-    </section>
-
-    <p id="app-message" class="message" role="status" aria-live="polite"></p>
-  </main>
-  <footer class="footer">ATEMPORAL · Tu tiempo, tus decisiones.</footer>
   <script type="module" src="app.js"></script>
+
 </body>
 </html>
